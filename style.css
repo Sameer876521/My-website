@@ -1,4 +1,11 @@
-
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+.bounce:active {
+    animation: bounce 0.9s ;
+  }
 body{
   display: flex;
   flex-direction: column;
@@ -22,3 +29,4 @@ img{
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
 }
+#btn

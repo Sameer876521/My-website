@@ -19,7 +19,8 @@ console.log(num)
 
 //Get the images of cards with
 const getdata = async() => {
-  
+  btn.style.disable=true
+  btn.innerText ="Loading..."
  const name = await getName();
 console.log(name)
 const url = `https://api.pokemontcg.io/v2/cards?q=name:${name}`;
@@ -32,7 +33,10 @@ num = Math.floor(Math.random()*img.data. length)
 
 image = document.createElement("img")
 image.src = img.data[num].images.large;
-container.prepend(image)
+
+container.prepend(image);
+btn.style.disable=false
+btn.innerText ="Get Pokemon"
 
 /*for(i = 0; i < img.data.length; i++)
 {
@@ -41,15 +45,7 @@ container.prepend(image)
   await document.body.appendChild(image)
 }
 */
-
-
 }
-
-const getPokemon = () => {
-  
-}
-
-
 
 btn.addEventListener("click",getdata)
 

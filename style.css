@@ -29,4 +29,7 @@ img{
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
 }
-#btn
+img:hover{
+  transform: rotate(720deg);
+  transition: 2s;
+} 

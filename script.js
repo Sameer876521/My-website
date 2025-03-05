@@ -28,11 +28,12 @@ const loading = (tof) => {
 
 //Get the images of cards with
 const getdata = async() => {
+  image = document.createElement("img")
+  container.prepend(image);
   load.style.display='block'
   btn.disabled=true
   btn.innerText ="Loading..."
-  image = document.createElement("img")
-  container.prepend(image);
+  
  const name = await getName();
 console.log(name)
 const url = `https://api.pokemontcg.io/v2/cards?q=name:${name}`;

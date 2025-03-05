@@ -16,7 +16,7 @@ body{
 }
 img{
   width: 85vw;
-  margin: 50px;
+  margin:50px;
   box-shadow: 4px 4px 10px #494646;
   border-radius: 20px;
 }
@@ -28,23 +28,20 @@ img{
   box-shadow: 3px 3px 10px #909094;
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 img:hover{
   transform: rotate(720deg);
   transition: 2s;
 } 
 .loader{
-  height: 50px;
-  width: 50px;
-  position: fixed;
-  top: 45vh;
-  right: 45vw;
+  height: 60px;
+  width: 60px;
+  margin: auto;
   border-radius: 50%;
-  border-top: 10px solid #171717;
-  z-index: 1;
+  border: none;
+  box-shadow: 10px 10px 1px #141414;
   animation: rotate 2s infinite;
-  margin-bottom: 100px;
 }
 
 @keyframes rotate{
@@ -52,10 +49,7 @@ img:hover{
     rotate: 720deg;
   }
 }
-#con{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 100px;
+
+html, body {
+  overflow-x: hidden;
 }

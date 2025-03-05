@@ -28,6 +28,7 @@ img{
   box-shadow: 3px 3px 10px #909094;
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: 30px;
 }
 img:hover{
   transform: rotate(720deg);
@@ -36,13 +37,14 @@ img:hover{
 .loader{
   height: 50px;
   width: 50px;
-  position:fixed;
+  position: fixed;
+  top: 45vh;
+  right: 45vw;
   border-radius: 50%;
-  top: 40vh;
-  left: 45vw;
-  border-top: 5px solid #171717;
+  border-top: 10px solid #171717;
   z-index: 1;
   animation: rotate 2s infinite;
+  margin-bottom: 100px;
 }
 
 @keyframes rotate{

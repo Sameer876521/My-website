@@ -33,3 +33,27 @@ img:hover{
   transform: rotate(720deg);
   transition: 2s;
 } 
+.loader{
+  height: 50px;
+  width: 50px;
+  position:fixed;
+  border-radius: 50%;
+  top: 40vh;
+  left: 45vw;
+  border-top: 5px solid #171717;
+  z-index: 1;
+  animation: rotate 2s infinite;
+}
+
+@keyframes rotate{
+  100%{
+    rotate: 720deg;
+  }
+}
+#con{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 100px;
+}

@@ -1,40 +1,62 @@
+/* Bounce Animation for Button */
 @keyframes bounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  }
-.bounce:active {
-    animation: bounce 0.9s ;
-  }
-body{
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.bounce:focus {
+  animation: bounce 0.9s;
+}
+
+/* Global Styling */
+body {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+  font-family: "Open Sans", sans-serif;
 }
-img{
+
+/* Pokémon Card Styling */
+img {
   width: 85vw;
-  margin:50px;
+  margin: 50px;
   box-shadow: 4px 4px 10px #494646;
   border-radius: 20px;
+  transition: transform 2s ease-in-out;
 }
-#btn{
+
+img:hover {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Button Styling */
+#btn {
   padding: 20px;
-  border: none ;
+  border: none;
   background-color: #FFFFFF;
   border-radius: 30px;
   box-shadow: 3px 3px 10px #909094;
   font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
   margin-bottom: 100px;
+  transition: all 0.3s ease-in-out;
 }
-img:hover{
-  transform: rotate(720deg);
-  transition: 2s;
-} 
-.loader{
+
+#btn:hover {
+  background-color: #f0f0f0;
+  box-shadow: 5px 5px 15px #7a7a7a;
+  transform: scale(1.05);
+}
+
+/* Loader Styling */
+.loader {
   height: 60px;
   width: 60px;
   margin: auto;
@@ -44,9 +66,9 @@ img:hover{
   animation: rotate 2s infinite;
 }
 
-@keyframes rotate{
-  100%{
-    rotate: 720deg;
+@keyframes rotate {
+  100% {
+    transform: rotate(720deg);
   }
 }
 

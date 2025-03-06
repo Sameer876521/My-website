@@ -1,61 +1,60 @@
 const btn = document.getElementById("btn");
 const container = document.getElementById("con");
-const load = document.querySelector(".loader")
+const load = document.querySelector(".loader");
 
-// Get name of Pokemon
-const getName = async () =>{
-  num = Math.floor(Math.random()*1000)
-console.log(num)
-  const url = `https://pokeapi.co/api/v2/pokemon/${num}`
-  
-  data = await fetch(url);
-  names = await data.json();
-  
-  val = names.name
-  
-  return val;
-}
+// Function to get a random Pokémon name
+const getName = async () => {
+    let num = Math.floor(Math.random() * 1025) + 1; // Ensures valid Pokémon ID
+    const url = `https://pokeapi.co/api/v2/pokemon/${num}`;
 
-const loading = (tof) => {
-  if (tof)
-  {
-    span = document.createElement("span");
-    span.class = "loader";
-    container.appendChild(span);
-    
-  }
-}
+    try {
+        let response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to fetch Pokémon");
+        let data = await response.json();
+        return data.name;
+    } catch (error) {
+        console.warn("Retrying getName()...");
+        return await getName(); // Retry if the request fails
+    }
+};
 
-//Get the images of cards with
-const getdata = async() => {
-  image = document.createElement("img")
-  container.prepend(image);
-  load.style.display='block'
-  btn.disabled=true
-  btn.innerText ="Loading..."
-  
- const name = await getName();
-console.log(name)
-const url = `https://api.pokemontcg.io/v2/cards?q=name:${name}`;
+// Function to get a random Pokémon TCG card image
+const getdata = async () => {
+    try {
+        const image = document.createElement("img");
+        container.prepend(image);
 
-data = await fetch(url)
+        // Show loading state
+        load.style.display = "block";
+        btn.disabled = true;
+        btn.innerText = "Loading...";
 
-if(!data.ok){
-  data = await fetch(url)
-}
+        const name = await getName();
+        console.log(`Searching for TCG card: ${name}`);
 
-img = await data.json();
+        const url = `https://api.pokemontcg.io/v2/cards?q=name:${name}`;
 
-num = Math.floor(Math.random()*img.data. length) 
+        let response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to fetch TCG data");
 
+        let imgData = await response.json();
+        if (!imgData.data || imgData.data.length === 0) throw new Error("No cards found");
 
-image.src = img.data[num].images.large;
+        // Pick a random card from the results
+        let num = Math.floor(Math.random() * imgData.data.length);
+        image.src = imgData.data[num].images.large;
 
+    } catch (error) {
+        console.warn("Retrying getdata()...");
+        await getdata(); // Retry fetching a card if any error occurs
+    } finally {
+        // Hide loading state
+        load.style.display = "none";
+        btn.innerText = "Get Pokémon";
+        btn.disabled = false;
+    }
+};
 
-load.style.display='none'
-btn.innerText ="Get Pokemon"
-btn.disabled=false
-}
-
-btn.addEventListener("click",getdata)
+btn.addEventListener("click", getdata);
+// Store the Generated images in local storage 
 
